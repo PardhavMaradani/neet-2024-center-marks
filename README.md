@@ -52,9 +52,11 @@ $
   - Note that it could take a few seconds to download the DB and show the results
 - The web interface should look something like this:
 
-
+![NEET 2024 Center-Wise marks SQL Web Interface](images/neet-2024-center-marks-sample1.png)
 
 - Enter your **SQL** commands in the textarea and click on the `Execute` button to see the results.
 
+![NEET 2024 Center-Wise marks SQL Web Interface](images/neet-2024-center-marks-sample2.png)
 
-
+- The `neet-2024-center-marks-data.db` file can be analyzed locally using `sqlite` as well
+- All the CSV's of the data are available separately in the `csv` folder and can be analyzed in any spreadsheet tool
