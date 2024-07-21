@@ -49,7 +49,7 @@ $
 ## Analyze
 
 - Click [here](https://pardhavmaradani.github.io/neet-2024-center-marks/) to analyze this database in your browser
-  - Note that it could take a few seconds to download the DB and show the results
+  - Note that it could take a few seconds/minutes to download the DB and show the results depending on your internet speed (The DB file is ~38MB)
 - The web interface should look something like this:
 
 ![NEET 2024 Center-Wise marks SQL Web Interface](images/neet-2024-center-marks-sample1.png)
