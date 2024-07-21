@@ -1,5 +1,7 @@
 # NEET 2024 State / City / Center-wise marks DB
 
+Click [here](https://pardhavmaradani.github.io/neet-2024-center-marks/) to explore the data directly in your browser.
+
 - The centers data is obtained from the **NEET (UG) Result 2024 City/Center Wise** [link](https://neet.ntaonline.in/frontend/web/common-scorecard/index) as follows:
   - The page shows there are `4,750` entries in the bottom left
 
@@ -39,81 +41,20 @@ sqlite>
 $
 ```
 
-- The DB can be analyzed in `sqlite` or any other DB program.  Here is the table structure:
+- To run a local version:
+  - Clone this repo
+  - Start a local server in the cloned folder using: `$ ./start_local_server.py`
+  - Open `http://localhost:8081/` in your browser
 
-```
-$ sqlite3 neet-2024-center-marks-data.db 
-SQLite version 3.46.0 2024-05-23 13:25:27
-Enter ".help" for usage hints.
-sqlite> .tables
-center_longnames  center_marks      centers         
-sqlite> .schema
-CREATE TABLE centers(sno TEXT, state TEXT, city TEXT, name TEXT, centno NUMBER);
-CREATE TABLE center_longnames(centno NUMBER, longname TEXT);
-CREATE TABLE center_marks(centno NUMBER, sno NUMBER, marks NUMBER);
-sqlite> .mode box
-sqlite> select * from centers limit 5;
-┌─────┬──────────────────────────────────┬────────────┬──────────────────────────────────────────┬────────┐
-│ sno │              state               │    city    │                   name                   │ centno │
-├─────┼──────────────────────────────────┼────────────┼──────────────────────────────────────────┼────────┤
-│ 1   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ KENDRIYA VIDYALAYA NO. 1                 │ 110101 │
-│ 2   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ DR B R AMBEDKAR INSTITUTE OF TECHNOLOGY  │ 110102 │
-│ 3   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ GOVERNMENT MODEL SENIOR SECONDARY SCHOOL │ 110103 │
-│ 4   │ ANDHRA PRADESH                   │ GUNTUR     │ LITTLE FLOWER ENGLISH MEDIUM SCHOOL      │ 120101 │
-│ 5   │ ANDHRA PRADESH                   │ GUNTUR     │ CHALAPATHI INSTITUTE OF TECHNOLOGY       │ 120102 │
-└─────┴──────────────────────────────────┴────────────┴──────────────────────────────────────────┴────────┘
-sqlite> select count(*) from centers;
-┌──────────┐
-│ count(*) │
-├──────────┤
-│ 4750     │
-└──────────┘
-sqlite> select * from center_longnames limit 5;
-┌────────┬──────────────────────────────────────────────────────────────┐
-│ centno │                           longname                           │
-├────────┼──────────────────────────────────────────────────────────────┤
-│ 990401 │ GLOBAL INDIAN INTERNATIONAL SCHOOL, 39/39 PATHUMTHANEE SAINA │
-│        │ I ROAD MUANG PATHUMTHANEE 12000 THAILAND, BANGKOK, OUTSIDE-I │
-│        │ NDIA                                                         │
-├────────┼──────────────────────────────────────────────────────────────┤
-│ 990501 │ SWAMI VIVEKANANDA GULTURAL GENTRE,, HIGH COMMISSION OF INDIA │
-│        │ , 16/2 GREGORY''S ROAD, COLOMBO -07, SRI LANKA, COLOMBO, OUT │
-│        │ SIDE-INDIA                                                   │
-├────────┼──────────────────────────────────────────────────────────────┤
-│ 990801 │ GLOBAL INDIAN INTERNATIONAL SCHOOL, KUALALUMPUR, MALAYSIA, 2 │
-│        │ 42, LORONG ABDUL SAMAD, OFF, JIN SULTAN ABDUL SAMAD, BRICKFI │
-│        │ ELDS, 50470KUALA LUMPUR, KUALA LUMPUR, OUTSIDE-INDIA         │
-├────────┼──────────────────────────────────────────────────────────────┤
-│ 990901 │ INDIAN LANGUAGE SCHOOL, INDIAN LANGUAGE SCHOOL, 14/16, OBA N │
-│        │ LE ARO AVENUE, ILUPEJU, LAGOS, NIGERIA, LAGOS, OUTSIDE-INDIA │
-├────────┼──────────────────────────────────────────────────────────────┤
-│ 261601 │ KENDRIYA VIDYALAYA LATEHAR, KINAMAR LATEHAR, LATEHAR, JHARKH │
-│        │ AND                                                          │
-└────────┴──────────────────────────────────────────────────────────────┘
-sqlite> select count(*) from center_longnames;
-┌──────────┐
-│ count(*) │
-├──────────┤
-│ 4750     │
-└──────────┘
-sqlite> select * from center_marks limit 5;
-┌────────┬─────┬───────┐
-│ centno │ sno │ marks │
-├────────┼─────┼───────┤
-│ 990401 │ 1   │ 233   │
-│ 990401 │ 2   │ 488   │
-│ 990401 │ 3   │ 141   │
-│ 990401 │ 4   │ 105   │
-│ 990401 │ 5   │ 290   │
-└────────┴─────┴───────┘
-sqlite> select count(*) from center_marks;
-┌──────────┐
-│ count(*) │
-├──────────┤
-│ 2333162  │
-└──────────┘
-sqlite> 
-```
+## Analyze
 
-- The `neet-2024-center-marks-data.db` file can also be analyzed in any browser by using the `sql.js` [GUI sample](https://sql.js.org/examples/GUI/) and loading the `.db` file using the `Load an SQLite database file` option below the textarea.
+- Click [here](https://pardhavmaradani.github.io/neet-2024-center-marks/) to analyze this database in your browser
+  - Note that it could take a few seconds to download the DB and show the results
+- The web interface should look something like this:
+
+
+
+- Enter your **SQL** commands in the textarea and click on the `Execute` button to see the results.
+
+
 
