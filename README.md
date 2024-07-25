@@ -71,15 +71,83 @@ $
 
 ## Writing / Generating SQL Queries
 
+Here is the `schema` of the three tables in this SQLite database:
+
+```
+CREATE TABLE centers(sno TEXT, state TEXT, city TEXT, name TEXT, centno NUMBER);
+CREATE TABLE center_longnames(centno NUMBER, longname TEXT);
+CREATE TABLE center_marks(centno NUMBER, sno NUMBER, marks NUMBER);
+```
+
+Here are the first few rows of each of the three tables:
+
+```
+SELECT  * FROM centers LIMIT 5;
+```
+
+```
+┌─────┬──────────────────────────────────┬────────────┬──────────────────────────────────────────┬────────┐
+│ sno │              state               │    city    │                   name                   │ centno │
+├─────┼──────────────────────────────────┼────────────┼──────────────────────────────────────────┼────────┤
+│ 1   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ KENDRIYA VIDYALAYA NO. 1                 │ 110101 │
+│ 2   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ DR B R AMBEDKAR INSTITUTE OF TECHNOLOGY  │ 110102 │
+│ 3   │ ANDAMAN AND NICOBAR ISLANDS (UT) │ PORT BLAIR │ GOVERNMENT MODEL SENIOR SECONDARY SCHOOL │ 110103 │
+│ 4   │ ANDHRA PRADESH                   │ GUNTUR     │ LITTLE FLOWER ENGLISH MEDIUM SCHOOL      │ 120101 │
+│ 5   │ ANDHRA PRADESH                   │ GUNTUR     │ CHALAPATHI INSTITUTE OF TECHNOLOGY       │ 120102 │
+└─────┴──────────────────────────────────┴────────────┴──────────────────────────────────────────┴────────┘
+```
+
+```
+SELECT * FROM center_longnames ORDER BY centno LIMIT 5;
+```
+
+```
+┌────────┬──────────────────────────────────────────────────────────────┐
+│ centno │                           longname                           │
+├────────┼──────────────────────────────────────────────────────────────┤
+│ 110101 │ KENDRIYA VIDYALAYA NO. 1, NEAR DAG COLONY ABERDEEN BAZAAR, P │
+│        │ ORT BLAIR, ANDAMAN & NICOBAR ISLANDS (UT)                    │
+├────────┼──────────────────────────────────────────────────────────────┤
+│ 110102 │ DR B R AMBEDKAR INSTITUTE OF TECHNOLOGY, NEAR SBI DOLLYGANJ  │
+│        │ BRANCH PAHARGAON, PORT BLAIR, ANDAMAN & NICOBAR ISLANDS (UT) │
+├────────┼──────────────────────────────────────────────────────────────┤
+│ 110103 │ GOVERNMENT MODEL SENIOR SECONDARY SCHOOL, ABERDEEN BAZAAR, P │
+│        │ ORT BLAIR, ANDAMAN & NICOBAR ISLANDS (UT)                    │
+├────────┼──────────────────────────────────────────────────────────────┤
+│ 120101 │ LITTLE FLOWER ENGLISH MEDIUM SCHOOL, VIDYA NAGAR 1ST LANE, G │
+│        │ UNTUR, ANDHRA PRADESH                                        │
+├────────┼──────────────────────────────────────────────────────────────┤
+│ 120102 │ CHALAPATHI INSTITUTE OF TECHNOLOGY, ABBURI RAGHAVAIAH NAGAR. │
+│        │  NEAR: BHARATHI CONSUMER CARE PVT LTD. MOTHADAKA TADIKONDA M │
+│        │ ANDALGUNTUR -522016, GUNTUR, ANDHRA PRADESH                  │
+└────────┴──────────────────────────────────────────────────────────────┘
+```
+
+```
+SELECT * FROM center_marks ORDER BY centno LIMIT 5;
+```
+
+```
+┌────────┬─────┬───────┐
+│ centno │ sno │ marks │
+├────────┼─────┼───────┤
+│ 110101 │ 1   │ 46    │
+│ 110101 │ 2   │ 226   │
+│ 110101 │ 3   │ 449   │
+│ 110101 │ 4   │ 424   │
+│ 110101 │ 5   │ 222   │
+└────────┴─────┴───────┘
+```
+
 I am still new to SQL and only know basic querying.  One of the fun ways I found to both learn and explore SQL queries is using [ChatGPT](https://chatgpt.com).
 
 For example, Times of India (TOI) had a front page article with the analysis of the center-wise marks data released by NTA on the 22nd of July 2024 - the snippet of it can be seen below:
 
-![Times of India 22 July 2024 NEET data analysis](images/TOI-22July2024-NEET-data-frontpage.png)
+> ![Times of India 22 July 2024 NEET data analysis](images/TOI-22July2024-NEET-data-frontpage.png)
 
 I wanted to verify the data in the main table above and other pieces of data mentioned in the article with this SQL Interface.
 
-I first provided my table data to ChatGPT as follows:
+I first provided my table data as context to ChatGPT as follows:
 
 > My database has three tables. 'centers' is a table that has center information.  The columns in 'centers' are 'sno', which is the serial number of the center, 'state', which is the state in which the center is located, 'city' is the city where the center is located, 'name' is the name of the center and 'centno' is the center number. 'center_longnames' is a table that has long names of the centers.  The columns in 'center_longnames' are 'centno', which is the center number and 'longname', which is the long name of the center. 'center_marks' is a table which has the candidate marks in centers.  The columns in 'center_marks' are 'centno', which is the center number, 'sno', which is the serial number of a candidate and 'marks' is the candidate marks.
 
